@@ -3,6 +3,8 @@ package slicezh
 import (
 	"math/rand/v2"
 	"slices"
+
+	"github.com/go-zwbc/slicezh/internal/utils"
 )
 
 func Do过滤[T any](a []T, condition func(value T) bool) []T {
@@ -13,6 +15,15 @@ func Do过滤[T any](a []T, condition func(value T) bool) []T {
 		}
 	}
 	return results
+}
+
+func Get首个满足条件的[T any](a []T, condition func(value T) bool) (T, bool) {
+	for _, one := range a {
+		if condition(one) {
+			return one, true
+		}
+	}
+	return utils.Zero[T](), false
 }
 
 func Do翻转[T any](a []T) {

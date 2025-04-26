@@ -15,6 +15,15 @@ func TestDo过滤(t *testing.T) {
 	require.Equal(t, []int{2, 4}, results)
 }
 
+func TestGet首个满足条件的(t *testing.T) {
+	one, ok := slicezh.Get首个满足条件的([]int{1, 2, 3, 4, 5}, func(value int) bool {
+		return value%2 == 0
+	})
+	require.True(t, ok)
+	t.Log(one)
+	require.Equal(t, 2, one)
+}
+
 func TestDo翻转(t *testing.T) {
 	a := []string{"a", "b", "c"}
 	slicezh.Do翻转(a)
