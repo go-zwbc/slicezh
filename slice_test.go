@@ -7,8 +7,8 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestDo过滤(t *testing.T) {
-	results := slicezh.Do过滤([]int{1, 2, 3, 4, 5}, func(value int) bool {
+func TestGet按过滤过滤(t *testing.T) {
+	results := slicezh.Get按过滤过滤([]int{1, 2, 3, 4, 5}, func(value int) bool {
 		return value%2 == 0
 	})
 	t.Log(results)

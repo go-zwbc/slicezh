@@ -7,7 +7,7 @@ import (
 	"github.com/go-zwbc/slicezh/internal/utils"
 )
 
-func Do过滤[T any](a []T, condition func(value T) bool) []T {
+func Get按过滤过滤[T any](a []T, condition func(value T) bool) []T {
 	results := make([]T, 0, len(a))
 	for _, one := range a {
 		if condition(one) {
@@ -40,4 +40,12 @@ func Get逆序新数组[T any](a []T) []T {
 
 func Get随机取样[T any](a []T) T {
 	return a[rand.IntN(len(a))]
+}
+
+func Contains[T comparable](a []T, value T) bool {
+	return slices.Contains(a, value)
+}
+
+func In[T comparable](a []T, value T) bool {
+	return slices.Contains(a, value)
 }
