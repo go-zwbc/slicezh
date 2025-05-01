@@ -41,3 +41,13 @@ func TestGet随机取样(t *testing.T) {
 	v := slicezh.Get随机取样([]float64{1.0, 2.14, 3.1})
 	t.Log(v)
 }
+
+func TestContains(t *testing.T) {
+	require.True(t, slicezh.Contains([]int{1, 2, 3}, 2))
+	require.False(t, slicezh.Contains([]int{1, 2, 3}, 4))
+}
+
+func TestIn(t *testing.T) {
+	require.True(t, slicezh.In(2, []int{1, 2, 3}))
+	require.False(t, slicezh.In(0, []int{1, 2, 3}))
+}

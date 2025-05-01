@@ -46,6 +46,6 @@ func Contains[T comparable](a []T, value T) bool {
 	return slices.Contains(a, value)
 }
 
-func In[T comparable](a []T, value T) bool {
+func In[T comparable](value T, a []T) bool {
 	return slices.Contains(a, value)
 }
