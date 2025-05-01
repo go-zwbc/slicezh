@@ -7,7 +7,7 @@ import (
 	"github.com/go-zwbc/slicezh/internal/utils"
 )
 
-func Get按过滤过滤[T any](a []T, condition func(value T) bool) []T {
+func Get按条件过滤[T any](a []T, condition func(value T) bool) []T {
 	results := make([]T, 0, len(a))
 	for _, one := range a {
 		if condition(one) {
