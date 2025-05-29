@@ -5,6 +5,7 @@ import (
 
 	"github.com/go-zwbc/slicezh"
 	"github.com/stretchr/testify/require"
+	"github.com/yyle88/neatjson/neatjsons"
 )
 
 func TestGet按条件过滤(t *testing.T) {
@@ -24,21 +25,21 @@ func TestGet首个满足条件的(t *testing.T) {
 	require.Equal(t, 2, one)
 }
 
-func TestDo翻转(t *testing.T) {
+func TestDo翻转自身内容(t *testing.T) {
 	a := []string{"a", "b", "c"}
-	slicezh.Do翻转(a)
+	slicezh.Do翻转自身内容(a)
 	require.Equal(t, []string{"c", "b", "a"}, a)
 }
 
-func TestGet逆序新数组(t *testing.T) {
+func TestGet获取逆序新数组(t *testing.T) {
 	a := []string{"a", "b", "c"}
-	b := slicezh.Get逆序新数组(a)
+	b := slicezh.Get获取逆序新数组(a)
 	require.Equal(t, []string{"c", "b", "a"}, b)
 	require.Equal(t, []string{"a", "b", "c"}, a)
 }
 
-func TestGet随机取样(t *testing.T) {
-	v := slicezh.Get随机取样([]float64{1.0, 2.14, 3.1})
+func TestGet随机取个元素(t *testing.T) {
+	v := slicezh.Get随机取个元素([]float64{1.0, 2.14, 3.1})
 	t.Log(v)
 }
 
@@ -50,4 +51,21 @@ func TestContains(t *testing.T) {
 func TestIn(t *testing.T) {
 	require.True(t, slicezh.In(2, []int{1, 2, 3}))
 	require.False(t, slicezh.In(0, []int{1, 2, 3}))
+}
+
+func TestGet转得Map(t *testing.T) {
+	type Person struct {
+		Name string
+		Age  int
+	}
+	people := []*Person{
+		{Name: "杨亦乐", Age: 18},
+		{Name: "刘亦菲", Age: 18},
+		{Name: "古天乐", Age: 18},
+	}
+	resMap := slicezh.Get转得Map(people, func(value *Person) string {
+		return value.Name
+	})
+	require.Equal(t, 3, len(resMap))
+	t.Log(neatjsons.S(resMap))
 }

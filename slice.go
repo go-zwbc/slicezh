@@ -26,11 +26,11 @@ func Get首个满足条件的[T any](a []T, condition func(value T) bool) (T, bo
 	return utils.Zero[T](), false
 }
 
-func Do翻转[T any](a []T) {
+func Do翻转自身内容[T any](a []T) {
 	slices.Reverse(a)
 }
 
-func Get逆序新数组[T any](a []T) []T {
+func Get获取逆序新数组[T any](a []T) []T {
 	results := make([]T, len(a))
 	for idx, one := range a {
 		results[len(results)-idx-1] = one
@@ -38,7 +38,7 @@ func Get逆序新数组[T any](a []T) []T {
 	return results
 }
 
-func Get随机取样[T any](a []T) T {
+func Get随机取个元素[T any](a []T) T {
 	return a[rand.IntN(len(a))]
 }
 
@@ -48,4 +48,12 @@ func Contains[T comparable](a []T, value T) bool {
 
 func In[T comparable](value T, a []T) bool {
 	return slices.Contains(a, value)
+}
+
+func Get转得Map[K comparable, V any](a []V, keyFunc func(value V) K) map[K]V {
+	resMap := make(map[K]V, len(a))
+	for _, one := range a {
+		resMap[keyFunc(one)] = one
+	}
+	return resMap
 }
