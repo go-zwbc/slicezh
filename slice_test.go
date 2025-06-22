@@ -25,9 +25,9 @@ func TestGet首个满足条件的(t *testing.T) {
 	require.Equal(t, 2, one)
 }
 
-func TestDo翻转自身内容(t *testing.T) {
+func TestMut翻转自身内容(t *testing.T) {
 	a := []string{"a", "b", "c"}
-	slicezh.Do翻转自身内容(a)
+	slicezh.Mut翻转自身内容(a)
 	require.Equal(t, []string{"c", "b", "a"}, a)
 }
 
@@ -43,6 +43,12 @@ func TestGet随机取个元素(t *testing.T) {
 	t.Log(v)
 }
 
+func TestMut随机乱序元素(t *testing.T) {
+	a := []string{"a", "b", "c", "d", "e", "f", "g"}
+	slicezh.Mut随机乱序元素(a)
+	t.Log(a)
+}
+
 func TestContains(t *testing.T) {
 	require.True(t, slicezh.Contains([]int{1, 2, 3}, 2))
 	require.False(t, slicezh.Contains([]int{1, 2, 3}, 4))
@@ -53,7 +59,7 @@ func TestIn(t *testing.T) {
 	require.False(t, slicezh.In(0, []int{1, 2, 3}))
 }
 
-func TestGet转得Map(t *testing.T) {
+func TestGet映射Map(t *testing.T) {
 	type Person struct {
 		Name string
 		Age  int
@@ -63,7 +69,7 @@ func TestGet转得Map(t *testing.T) {
 		{Name: "刘亦菲", Age: 18},
 		{Name: "古天乐", Age: 18},
 	}
-	resMap := slicezh.Get转得Map(people, func(value *Person) string {
+	resMap := slicezh.Get映射Map(people, func(value *Person) string {
 		return value.Name
 	})
 	require.Equal(t, 3, len(resMap))
